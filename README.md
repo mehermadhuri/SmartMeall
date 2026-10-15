@@ -7,13 +7,13 @@ SmartMeal is a campus meal pre-ordering application with a React/Vite frontend, 
 | Project component | Link |
 | --- | --- |
 | GitHub repository | [mehermadhuri/SmartMeall](https://github.com/mehermadhuri/SmartMeall) |
-| React + Vite frontend source | [frontend/](https://github.com/mehermadhuri/SmartMeall/tree/master/frontend) |
-| Java 17 + Spring Boot backend source | [backend/](https://github.com/mehermadhuri/SmartMeall/tree/master/backend) |
-| Python AI forecasting service source | [ai-service/](https://github.com/mehermadhuri/SmartMeall/tree/master/ai-service) |
-| Render deployment configuration | [render.yaml](https://github.com/mehermadhuri/SmartMeall/blob/master/render.yaml) |
-| Vercel frontend configuration | [frontend/vercel.json](https://github.com/mehermadhuri/SmartMeall/blob/master/frontend/vercel.json) |
-| GitHub Actions CI workflow | [ci.yml](https://github.com/mehermadhuri/SmartMeall/blob/master/.github/workflows/ci.yml) |
-| Local multi-service setup | [docker-compose.yml](https://github.com/mehermadhuri/SmartMeall/blob/master/docker-compose.yml) |
+| React + Vite frontend source | [frontend/](https://github.com/mehermadhuri/SmartMeall/tree/main/frontend) |
+| Java 17 + Spring Boot backend source | [backend/](https://github.com/mehermadhuri/SmartMeall/tree/main/backend) |
+| Python AI forecasting service source | [ai-service/](https://github.com/mehermadhuri/SmartMeall/tree/main/ai-service) |
+| Render deployment configuration | [render.yaml](https://github.com/mehermadhuri/SmartMeall/blob/main/render.yaml) |
+| Vercel frontend configuration | [frontend/vercel.json](https://github.com/mehermadhuri/SmartMeall/blob/main/frontend/vercel.json) |
+| GitHub Actions CI workflow | [ci.yml](https://github.com/mehermadhuri/SmartMeall/blob/main/.github/workflows/ci.yml) |
+| Local multi-service setup | [docker-compose.yml](https://github.com/mehermadhuri/SmartMeall/blob/main/docker-compose.yml) |
 
 ## Deployment links
 
