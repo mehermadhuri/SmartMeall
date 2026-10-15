@@ -2,6 +2,16 @@
 
 SmartMeal is a campus meal pre-ordering application with a React/Vite frontend, a Java 17/Spring Boot API, MySQL persistence, and a Python forecasting service.
 
+## Project and deployment links
+
+| Component | Link | Status |
+| --- | --- | --- |
+| React frontend source | [frontend/](./frontend/) | Repository source |
+| Spring Boot backend source | [backend/](./backend/) | Repository source |
+| Vercel frontend candidate | [smartmeal-frontend.vercel.app](https://smartmeal-frontend.vercel.app/) | Not this repository's React client; deployment is unverified. |
+| Render backend candidate | [smartmeal-backend-l5xs.onrender.com](https://smartmeal-backend-l5xs.onrender.com/) | Health-check request timed out during the latest audit. |
+| Backend health check | [Render API health endpoint](https://smartmeal-backend-l5xs.onrender.com/api/health) | Not verified. |
+
 ## Project layout
 
 - `frontend/` — student and administrator web application
