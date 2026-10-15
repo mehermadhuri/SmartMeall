@@ -2,15 +2,30 @@
 
 SmartMeal is a campus meal pre-ordering application with a React/Vite frontend, a Java 17/Spring Boot API, MySQL persistence, and a Python forecasting service.
 
-## Project and deployment links
+## Project links
 
-| Component | Link | Status |
+| Project component | Link |
+| --- | --- |
+| GitHub repository | [mehermadhuri/SmartMeall](https://github.com/mehermadhuri/SmartMeall) |
+| React + Vite frontend source | [frontend/](https://github.com/mehermadhuri/SmartMeall/tree/master/frontend) |
+| Java 17 + Spring Boot backend source | [backend/](https://github.com/mehermadhuri/SmartMeall/tree/master/backend) |
+| Python AI forecasting service source | [ai-service/](https://github.com/mehermadhuri/SmartMeall/tree/master/ai-service) |
+| Render deployment configuration | [render.yaml](https://github.com/mehermadhuri/SmartMeall/blob/master/render.yaml) |
+| Vercel frontend configuration | [frontend/vercel.json](https://github.com/mehermadhuri/SmartMeall/blob/master/frontend/vercel.json) |
+| GitHub Actions CI workflow | [ci.yml](https://github.com/mehermadhuri/SmartMeall/blob/master/.github/workflows/ci.yml) |
+| Local multi-service setup | [docker-compose.yml](https://github.com/mehermadhuri/SmartMeall/blob/master/docker-compose.yml) |
+
+## Deployment links
+
+| Service | Link | Status |
 | --- | --- | --- |
-| React frontend source | [frontend/](./frontend/) | Repository source |
-| Spring Boot backend source | [backend/](./backend/) | Repository source |
-| Vercel frontend candidate | [smartmeal-frontend.vercel.app](https://smartmeal-frontend.vercel.app/) | The existing site is not this repository's React client. Reassigning it to the new Vercel project and verifying deployment are pending. |
-| Render backend candidate | [smartmeal-backend-l5xs.onrender.com](https://smartmeal-backend-l5xs.onrender.com/) | Existing candidate timed out; the Blueprint creates a service whose generated URL must be verified and linked here. |
-| Backend health check | [Render API health endpoint](https://smartmeal-backend-l5xs.onrender.com/api/health) | Not verified. |
+| Vercel React frontend candidate | [smartmeal-frontend.vercel.app](https://smartmeal-frontend.vercel.app/) | Not this repository's React client; the Vercel project must be connected to this repository's `frontend/` directory and redeployed. |
+| Render backend candidate | [smartmeal-backend-l5xs.onrender.com](https://smartmeal-backend-l5xs.onrender.com/) | Previous health request timed out. A newly created Render Blueprint service may have a different URL. |
+| Backend health check | [API `/api/health`](https://smartmeal-backend-l5xs.onrender.com/api/health) | Not verified. |
+| Render AI service | URL not yet available | Render must create the service from `render.yaml`; use its deployed URL after creation and health verification. |
+| Aiven MySQL | No public link | Connection details are private and must be configured in Render's secret settings. |
+
+The Vercel and Render addresses above are candidates, not proof that this repository is deployed. Replace them with the actual deployment URLs after connecting the provider projects, deploying, and verifying the frontend, API, AI health endpoint, and application flows.
 
 ## Project layout
 
@@ -137,17 +152,7 @@ The CI workflow runs backend Maven verification, frontend tests/lint/build, and 
 
 No production database or hosting account is configured by this repository, and no public deployment URL is claimed. A practical low-cost layout is a static frontend host (for example, Cloudflare Pages) plus container hosting for the Spring Boot API and Python AI service, with Aiven MySQL. Compare current pricing, region, TLS, networking, and free-tier limits before choosing a provider; free tiers and availability change.
 
-### Previously identified hosting candidates (unverified)
-
-These URLs are leads only, not evidence that this repository's current source is deployed:
-
-| Candidate | URL | Audit status |
-| --- | --- | --- |
-| Vercel frontend | [https://smartmeal-frontend.vercel.app](https://smartmeal-frontend.vercel.app/) | It currently serves a different meal-planning application, not this repository's React client. |
-| Render backend | [https://smartmeal-backend-l5xs.onrender.com](https://smartmeal-backend-l5xs.onrender.com/) | The health-check request timed out during the latest audit. |
-| Render backend health check | [https://smartmeal-backend-l5xs.onrender.com/api/health](https://smartmeal-backend-l5xs.onrender.com/api/health) | Not verified. |
-
-These candidate URLs are not proof that the current source is deployed. The Vercel project must use this repository's `frontend/` directory, and the Render services must be created from the root `render.yaml`. Provider dashboards are required to reassign the Vercel domain and retrieve Render's generated service URLs; update this table to those URLs after deploying and verifying the application.
+The current deployment candidates and their verification status are listed in [Deployment links](#deployment-links) above. They are not proof that this source is live. Provider dashboards are required to connect the Vercel project to this repository's `frontend/` directory and retrieve Render's generated service URLs; update the table after deploying and verifying the application.
 
 For a real deployment:
 
