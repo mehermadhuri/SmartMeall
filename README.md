@@ -127,6 +127,18 @@ The CI workflow runs backend Maven verification, frontend tests/lint/build, and 
 
 No production database or hosting account is configured by this repository, and no public deployment URL is claimed. A practical low-cost layout is a static frontend host (for example, Cloudflare Pages) plus container hosting for the Spring Boot API and Python AI service, with Aiven MySQL. Compare current pricing, region, TLS, networking, and free-tier limits before choosing a provider; free tiers and availability change.
 
+### Previously identified hosting candidates (unverified)
+
+These URLs are leads only, not evidence that this repository's current source is deployed:
+
+| Candidate | URL | Audit status |
+| --- | --- | --- |
+| Vercel frontend | [https://smartmeal-frontend.vercel.app](https://smartmeal-frontend.vercel.app/) | It currently serves a different meal-planning application, not this repository's React client. |
+| Render backend | [https://smartmeal-backend-l5xs.onrender.com](https://smartmeal-backend-l5xs.onrender.com/) | The health-check request timed out during the latest audit. |
+| Render backend health check | [https://smartmeal-backend-l5xs.onrender.com/api/health](https://smartmeal-backend-l5xs.onrender.com/api/health) | Not verified. |
+
+Do not use these candidate URLs as proof of a deployment. Identify the correct hosting projects and verify the frontend, API health endpoint, and application flows before publishing production URLs.
+
 For a real deployment:
 
 1. Create the Aiven MySQL service and database. Copy its connection details into the hosting provider's secret store; require TLS.
