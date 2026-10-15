@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/target/
+target/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Build output
+build/
+dist/
+out/
+coverage/
+*.class
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local env and secrets
+.env
+.env.*
+!.env.example
+
+# Docker local volumes / generated data
+mysql-data/
+postgres-data/
+
+# Misc generated files
+*.tmp
+*.bak
