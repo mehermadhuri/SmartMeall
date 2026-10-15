@@ -46,6 +46,12 @@ The default Spring profile uses an in-memory H2 database for local development. 
 $bytes = New-Object byte[] 32
 [Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($bytes)
 $env:JWT_SECRET = [Convert]::ToBase64String($bytes)
+$env:SPRING_PROFILES_ACTIVE = 'local'
+$env:DB_URL = 'jdbc:h2:mem:smartmeal;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE'
+$env:DB_USERNAME = 'sa'
+$env:DB_PASSWORD = ''
+$env:DB_DRIVER = 'org.h2.Driver'
+$env:HIBERNATE_DIALECT = 'org.hibernate.dialect.H2Dialect'
 Set-Location backend
 mvn spring-boot:run
 ```
