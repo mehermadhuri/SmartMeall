@@ -53,9 +53,12 @@ describe('SmartMeal application', () => {
 
     render(<App />)
     expect(await screen.findByText('Idly')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Sign In' })).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /send email otp/i })).not.toBeInTheDocument()
+    expect(screen.queryByLabelText(/email otp/i)).not.toBeInTheDocument()
     fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'student@example.test' } })
     fireEvent.change(screen.getByLabelText('Password'), { target: { value: 'strong-pass-1' } })
-    fireEvent.click(screen.getByRole('button', { name: 'Sign in' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Sign In' }))
 
     expect(await screen.findByText('Signed in as Test Student')).toBeInTheDocument()
     expect(localStorage.getItem('smartmeal-token')).toBe('signed-token')
@@ -117,7 +120,7 @@ describe('SmartMeal application', () => {
     await screen.findByText('Idly')
     fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'student@example.test' } })
     fireEvent.change(screen.getByLabelText('Password'), { target: { value: 'strong-pass-1' } })
-    fireEvent.click(screen.getByRole('button', { name: 'Sign in' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Sign In' }))
     await screen.findByText('Signed in as Test Student')
     fireEvent.click(screen.getByRole('button', { name: 'Add to booking' }))
     fireEvent.change(screen.getByLabelText('Pickup date'), { target: { value: '2099-05-06' } })

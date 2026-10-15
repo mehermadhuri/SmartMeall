@@ -363,7 +363,7 @@ function App() {
         </section>
 
         {!user && <section id="auth" className="card auth-panel">
-          <div className="section-head"><h3>{authMode === 'login' ? 'Sign in' : 'Create student account'}</h3><button className="switch-btn" onClick={() => { setAuthMode(authMode === 'login' ? 'register' : 'login'); setError('') }}>{authMode === 'login' ? 'Register' : 'I already have an account'}</button></div>
+          <div className="section-head"><h3>{authMode === 'login' ? 'Sign In' : 'Create student account'}</h3><button className="switch-btn" onClick={() => { setAuthMode(authMode === 'login' ? 'register' : 'login'); setError('') }}>{authMode === 'login' ? 'Register' : 'I already have an account'}</button></div>
           <form onSubmit={handleAuthSubmit} className="auth-form">
             {authMode === 'register' && <>
               <label>Full name<input autoComplete="name" required value={form.fullName} onChange={(event) => setForm({ ...form, fullName: event.target.value })} /></label>
@@ -372,7 +372,7 @@ function App() {
             <label>Email<input type="email" autoComplete="email" required value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} /></label>
             <label>Password<input type="password" autoComplete={authMode === 'login' ? 'current-password' : 'new-password'} minLength={8} required value={form.password} onChange={(event) => setForm({ ...form, password: event.target.value })} /></label>
             {authMode === 'register' && <label>Confirm password<input type="password" autoComplete="new-password" minLength={8} required value={form.confirmPassword} onChange={(event) => setForm({ ...form, confirmPassword: event.target.value })} /></label>}
-            <button className="primary" type="submit" disabled={loading}>{loading ? 'Please wait…' : authMode === 'login' ? 'Sign in' : 'Create account'}</button>
+            <button className="primary" type="submit" disabled={loading}>{loading ? 'Please wait…' : authMode === 'login' ? 'Sign In' : 'Create account'}</button>
           </form>
         </section>}
 
