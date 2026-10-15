@@ -19,8 +19,13 @@ public class AiServiceConfig {
         requestFactory.setConnectTimeout(Duration.ofMillis(connectTimeoutMs));
         requestFactory.setReadTimeout(Duration.ofMillis(readTimeoutMs));
         return RestClient.builder()
-                .baseUrl(aiServiceUrl)
+                .baseUrl(normalizeBaseUrl(aiServiceUrl))
                 .requestFactory(requestFactory)
                 .build();
+    }
+
+    static String normalizeBaseUrl(String aiServiceUrl) {
+        String baseUrl = aiServiceUrl.trim();
+        return baseUrl.contains("://") ? baseUrl : "https://" + baseUrl;
     }
 }

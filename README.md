@@ -8,8 +8,8 @@ SmartMeal is a campus meal pre-ordering application with a React/Vite frontend, 
 | --- | --- | --- |
 | React frontend source | [frontend/](./frontend/) | Repository source |
 | Spring Boot backend source | [backend/](./backend/) | Repository source |
-| Vercel frontend candidate | [smartmeal-frontend.vercel.app](https://smartmeal-frontend.vercel.app/) | Not this repository's React client; deployment is unverified. |
-| Render backend candidate | [smartmeal-backend-l5xs.onrender.com](https://smartmeal-backend-l5xs.onrender.com/) | Health-check request timed out during the latest audit. |
+| Vercel frontend candidate | [smartmeal-frontend.vercel.app](https://smartmeal-frontend.vercel.app/) | The existing site is not this repository's React client. Reassigning it to the new Vercel project and verifying deployment are pending. |
+| Render backend candidate | [smartmeal-backend-l5xs.onrender.com](https://smartmeal-backend-l5xs.onrender.com/) | Existing candidate timed out; the Blueprint creates a service whose generated URL must be verified and linked here. |
 | Backend health check | [Render API health endpoint](https://smartmeal-backend-l5xs.onrender.com/api/health) | Not verified. |
 
 ## Project layout
@@ -147,14 +147,16 @@ These URLs are leads only, not evidence that this repository's current source is
 | Render backend | [https://smartmeal-backend-l5xs.onrender.com](https://smartmeal-backend-l5xs.onrender.com/) | The health-check request timed out during the latest audit. |
 | Render backend health check | [https://smartmeal-backend-l5xs.onrender.com/api/health](https://smartmeal-backend-l5xs.onrender.com/api/health) | Not verified. |
 
-Do not use these candidate URLs as proof of a deployment. Identify the correct hosting projects and verify the frontend, API health endpoint, and application flows before publishing production URLs.
+These candidate URLs are not proof that the current source is deployed. The Vercel project must use this repository's `frontend/` directory, and the Render services must be created from the root `render.yaml`. Provider dashboards are required to reassign the Vercel domain and retrieve Render's generated service URLs; update this table to those URLs after deploying and verifying the application.
 
 For a real deployment:
 
 1. Create the Aiven MySQL service and database. Copy its connection details into the hosting provider's secret store; require TLS.
-2. Build and deploy `backend/` and `ai-service/` as separate containers, or use a platform that supports both runtimes. Set `SPRING_PROFILES_ACTIVE=production`, `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `JWT_SECRET`, `CORS_ALLOWED_ORIGINS`, and `AI_SERVICE_URL` as provider-managed settings.
-3. Deploy `frontend/` as a Vite static site with `VITE_API_BASE_URL` set to the API's HTTPS URL plus `/api`, then set the API's `CORS_ALLOWED_ORIGINS` to the exact frontend HTTPS origin.
-4. Configure an initial administrator using provider-managed `ADMIN_EMAIL` and `ADMIN_PASSWORD` settings before the initial seed, then remove the password setting when no longer needed. The app does not include a default admin login.
-5. Check `GET /api/health` on the API and `GET /health` on the AI service, then exercise registration, login, and booking against the deployed database. Only publish URLs after those checks pass.
+2. In Render, create a Blueprint deployment from this repository's root `render.yaml`. Set `DB_URL` to Aiven's JDBC URL with TLS required, and set `DB_USERNAME` and `DB_PASSWORD` through Render's secret settings. The Blueprint generates `JWT_SECRET` and links the backend to the AI service's HTTPS hostname. Render's free web services cannot receive private-network connections, so the AI service is reached through its public HTTPS endpoint.
+3. In Vercel, import this repository and set the project's **Root Directory** to `frontend`. Set the `VITE_API_BASE_URL` environment variable to `https://<your-render-backend-host>/api` for each deployment environment, then deploy. `frontend/vercel.json` provides the SPA route fallback.
+4. Set Render's `CORS_ALLOWED_ORIGINS` to the exact deployed Vercel origin (for example, `https://<your-vercel-project>.vercel.app`), without a trailing path or wildcard, then redeploy the backend.
+5. Configure an initial administrator using provider-managed `ADMIN_EMAIL` and `ADMIN_PASSWORD` settings before the initial seed, then remove the password setting when no longer needed. The app does not include a default admin login.
+6. Check `GET /api/health` on the API and `GET /health` on the AI service, then exercise registration, login, and booking against the deployed database. Only treat the public URLs as live after those checks pass.
+7. In the README link table, replace the candidate URLs with the actual deployed URLs. The existing Vercel URL must be reassigned from its unrelated project to this frontend; the old Render URL does not automatically become the new Blueprint service's URL.
 
 Review database schema migration strategy and backups before production use. The current application uses Hibernate schema update and has no versioned migration scripts yet.
